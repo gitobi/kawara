@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry-byebug'
   s.add_development_dependency 'ammeter'
   s.add_development_dependency 'temping'
+  s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rspec_junit_formatter', '= 0.2.2'
 end
