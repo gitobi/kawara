@@ -2,6 +2,9 @@ require 'rails_helper'
 
 module Kawara
   RSpec.describe Article, type: :model do
+    describe 'associations' do
+      it { should have_many(:images) }
+    end
 
     describe 'validations' do
       it { should validate_presence_of(:title) }

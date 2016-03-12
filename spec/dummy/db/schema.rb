@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311072058) do
+ActiveRecord::Schema.define(version: 20160312220950) do
+
+  create_table "kawara_article_images", force: :cascade do |t|
+    t.integer  "article_id",        null: false
+    t.string   "file_id",           null: false
+    t.string   "file_filename"
+    t.integer  "file_size"
+    t.string   "file_content_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "kawara_article_images", ["article_id"], name: "index_kawara_article_images_on_article_id"
 
   create_table "kawara_articles", force: :cascade do |t|
     t.string   "title",      null: false
