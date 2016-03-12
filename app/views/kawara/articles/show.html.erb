@@ -1,1 +1,13 @@
-<%= raw(@article.html_content) %>
+<article>
+  <header>
+    <h1><%= @article.title %></h1>
+
+    <% if @article.subtitle.present? %>
+      <p><%= @article.subtitle %></p>
+    <% end %>
+
+  </header>
+
+  <%= raw(@article.html_content) %>
+
+</article>
