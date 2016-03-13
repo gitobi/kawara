@@ -4,8 +4,7 @@ module Kawara
   class Article < ActiveRecord::Base
 
     has_many :images, class_name: 'ArticleImage', dependent: :destroy
-
-    validates :title, presence: true
+    enum status: { draft: 0, published: 10 }
 
     accepts_attachments_for :images
 
