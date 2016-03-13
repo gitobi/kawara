@@ -26,11 +26,14 @@ ActiveRecord::Schema.define(version: 20160312220950) do
   add_index "kawara_article_images", ["article_id"], name: "index_kawara_article_images_on_article_id"
 
   create_table "kawara_articles", force: :cascade do |t|
-    t.string   "title",      null: false
+    t.string   "title"
     t.string   "subtitle"
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "status",     default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
+
+  add_index "kawara_articles", ["status"], name: "index_kawara_articles_on_status"
 
 end
