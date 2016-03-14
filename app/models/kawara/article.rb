@@ -8,6 +8,10 @@ module Kawara
 
     accepts_attachments_for :images
 
+    def self.find_from_published(id)
+      published.find(id)
+    end
+
     def html_content(auto_ids: true)
       Kramdown::Document.new(content, auto_ids: auto_ids).to_html
     end
