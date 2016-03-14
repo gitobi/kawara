@@ -34,6 +34,6 @@ ActiveRecord::Schema.define(version: 20160312220950) do
     t.datetime "updated_at",             null: false
   end
 
-  add_index "kawara_articles", ["status"], name: "index_kawara_articles_on_status"
+  add_index "kawara_articles", ["status", "id"], name: "index_kawara_articles_on_status_and_id"
 
 end
