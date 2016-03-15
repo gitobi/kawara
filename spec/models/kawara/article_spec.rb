@@ -4,6 +4,8 @@ module Kawara
   RSpec.describe Article, type: :model do
     describe 'associations' do
       it { should have_many(:images) }
+      it { should have_many(:articles_tags) }
+      it { should have_many(:tags) }
     end
 
     describe '#find_from_published' do

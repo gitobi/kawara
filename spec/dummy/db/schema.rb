@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312220950) do
+ActiveRecord::Schema.define(version: 20160315075948) do
 
   create_table "kawara_article_images", force: :cascade do |t|
     t.integer  "article_id",        null: false
@@ -35,5 +35,22 @@ ActiveRecord::Schema.define(version: 20160312220950) do
   end
 
   add_index "kawara_articles", ["status", "id"], name: "index_kawara_articles_on_status_and_id"
+
+  create_table "kawara_articles_tags", force: :cascade do |t|
+    t.integer  "article_id", null: false
+    t.integer  "tag_id",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "kawara_articles_tags", ["article_id", "tag_id"], name: "index_kawara_articles_tags_on_article_id_and_tag_id"
+  add_index "kawara_articles_tags", ["tag_id", "article_id"], name: "index_kawara_articles_tags_on_tag_id_and_article_id"
+
+  create_table "kawara_tags", force: :cascade do |t|
+    t.string   "name",           null: false
+    t.integer  "articles_count"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
 end
