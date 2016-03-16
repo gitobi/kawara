@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315075948) do
+ActiveRecord::Schema.define(version: 20160316132838) do
 
   create_table "kawara_article_images", force: :cascade do |t|
     t.integer  "article_id",        null: false
@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 20160315075948) do
   add_index "kawara_articles", ["status", "category_id"], name: "index_kawara_articles_on_status_and_category_id"
   add_index "kawara_articles", ["status", "id"], name: "index_kawara_articles_on_status_and_id"
 
+  create_table "kawara_articles_meta_tags", force: :cascade do |t|
+    t.integer  "article_id",  null: false
+    t.integer  "meta_tag_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "kawara_articles_meta_tags", ["article_id", "meta_tag_id"], name: "index_kawara_articles_meta_tags_on_article_id_and_meta_tag_id"
+  add_index "kawara_articles_meta_tags", ["meta_tag_id", "article_id"], name: "index_kawara_articles_meta_tags_on_meta_tag_id_and_article_id"
+
   create_table "kawara_articles_tags", force: :cascade do |t|
     t.integer  "article_id", null: false
     t.integer  "tag_id",     null: false
@@ -64,11 +74,22 @@ ActiveRecord::Schema.define(version: 20160315075948) do
   add_index "kawara_categories", ["parent_id"], name: "index_kawara_categories_on_parent_id"
   add_index "kawara_categories", ["rgt"], name: "index_kawara_categories_on_rgt"
 
+  create_table "kawara_meta_tags", force: :cascade do |t|
+    t.string   "name",           null: false
+    t.integer  "articles_count"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "kawara_meta_tags", ["name"], name: "index_kawara_meta_tags_on_name", unique: true
+
   create_table "kawara_tags", force: :cascade do |t|
     t.string   "name",           null: false
     t.integer  "articles_count"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  add_index "kawara_tags", ["name"], name: "index_kawara_tags_on_name", unique: true
 
 end

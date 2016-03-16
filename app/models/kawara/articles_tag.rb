@@ -5,7 +5,6 @@ module Kawara
     belongs_to :tag, counter_cache: :articles_count
 
     validates :article, presence: true
-    validates :tag, presence: true
-
+    validates :tag,     presence: true
   end
 end
