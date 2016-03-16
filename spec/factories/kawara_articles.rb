@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :kawara_article, class: 'Kawara::Article' do
     factory :draft_article do
+      association :category, factory: :kawara_category
       title    'Article Title'
       subtitle 'Article Subtitle'
       content  '# Content Header'
