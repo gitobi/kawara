@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     kawara (0.0.1)
+      awesome_nested_set
       kramdown (~> 1.10.0)
       rails (~> 4.2.6)
       refile
@@ -51,6 +52,8 @@ GEM
       railties (>= 3.0)
       rspec-rails (>= 2.2)
     arel (6.0.3)
+    awesome_nested_set (3.0.3)
+      activerecord (>= 4.0.0, < 5)
     aws-sdk (2.2.26)
       aws-sdk-resources (= 2.2.26)
     aws-sdk-core (2.2.26)

@@ -3,6 +3,7 @@ require 'rails_helper'
 module Kawara
   RSpec.describe Article, type: :model do
     describe 'associations' do
+      it { should belong_to(:category) }
       it { should have_many(:images) }
       it { should have_many(:articles_tags) }
       it { should have_many(:tags) }

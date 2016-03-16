@@ -26,14 +26,17 @@ ActiveRecord::Schema.define(version: 20160315075948) do
   add_index "kawara_article_images", ["article_id"], name: "index_kawara_article_images_on_article_id"
 
   create_table "kawara_articles", force: :cascade do |t|
+    t.integer  "category_id"
     t.string   "title"
     t.string   "subtitle"
     t.text     "content"
-    t.integer  "status",     default: 0, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "status",      default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
+  add_index "kawara_articles", ["category_id"], name: "index_kawara_articles_on_category_id"
+  add_index "kawara_articles", ["status", "category_id"], name: "index_kawara_articles_on_status_and_category_id"
   add_index "kawara_articles", ["status", "id"], name: "index_kawara_articles_on_status_and_id"
 
   create_table "kawara_articles_tags", force: :cascade do |t|
@@ -45,6 +48,21 @@ ActiveRecord::Schema.define(version: 20160315075948) do
 
   add_index "kawara_articles_tags", ["article_id", "tag_id"], name: "index_kawara_articles_tags_on_article_id_and_tag_id"
   add_index "kawara_articles_tags", ["tag_id", "article_id"], name: "index_kawara_articles_tags_on_tag_id_and_article_id"
+
+  create_table "kawara_categories", force: :cascade do |t|
+    t.string   "name",                       null: false
+    t.integer  "parent_id"
+    t.integer  "lft",                        null: false
+    t.integer  "rgt",                        null: false
+    t.integer  "depth",          default: 0, null: false
+    t.integer  "children_count", default: 0, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "kawara_categories", ["lft"], name: "index_kawara_categories_on_lft"
+  add_index "kawara_categories", ["parent_id"], name: "index_kawara_categories_on_parent_id"
+  add_index "kawara_categories", ["rgt"], name: "index_kawara_categories_on_rgt"
 
   create_table "kawara_tags", force: :cascade do |t|
     t.string   "name",           null: false
