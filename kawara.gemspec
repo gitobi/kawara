@@ -11,24 +11,24 @@ Gem::Specification.new do |s|
   s.email       = ["deraru@gmail.com"]
   s.homepage    = "https://github.com/gitobi/kawara"
   s.summary     = "Mountable blog engine"
-  s.description = "Mountable blog engine"
+  s.description = "Mountable blog engine for Rails application"
   s.license     = "MIT"
 
   s.files      = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir['spec/**/*']
 
-  s.add_dependency 'rails', '~> 4.2.6'
-  s.add_dependency 'kramdown', '~> 1.10.0'
-  s.add_dependency 'refile'
-  s.add_dependency 'refile-mini_magick'
-  s.add_dependency 'refile-s3'
-  s.add_dependency 'awesome_nested_set'
+  s.add_dependency 'rails', '~> 4.2', '>= 4.2.6'
+  s.add_dependency 'kramdown', '~> 1.10', '>= 1.10.0'
+  s.add_dependency 'refile', '~> 0'
+  s.add_dependency 'refile-mini_magick', '~> 0'
+  s.add_dependency 'refile-s3', '~> 0'
+  s.add_dependency 'awesome_nested_set', '~> 0'
 
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'factory_girl_rails'
-  s.add_development_dependency 'ammeter'
-  s.add_development_dependency 'temping'
-  s.add_development_dependency 'shoulda-matchers'
-  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'rspec-rails', '~> 0'
+  s.add_development_dependency 'factory_girl_rails', '~> 0'
+  s.add_development_dependency 'ammeter', '~> 0'
+  s.add_development_dependency 'temping', '~> 0'
+  s.add_development_dependency 'shoulda-matchers', '~> 0'
+  s.add_development_dependency 'sqlite3', '~> 0'
   s.add_development_dependency 'rspec_junit_formatter', '= 0.2.2'
 end
