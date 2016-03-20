@@ -14,6 +14,8 @@ module Kawara
 
     accepts_attachments_for :images
 
+    scope :latest, -> (limit=10) { published.last(limit).reverse }
+
     def self.find_from_published(id)
       published.find(id)
     end
