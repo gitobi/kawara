@@ -16,5 +16,9 @@ module Kawara
         it { should validate_uniqueness_of(:name) }
       end
     end
+
+    describe 'deligations' do
+      it { should delegate_method(:latest).to(:articles).with_prefix }
+    end
   end
 end

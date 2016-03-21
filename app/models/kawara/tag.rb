@@ -6,8 +6,6 @@ module Kawara
 
     validates :name, presence: true, uniqueness: true
 
-    def latest_articles(limit=10)
-      articles.latest(limit)
-    end
+    delegate :latest, to: :articles, prefix: true
   end
 end
