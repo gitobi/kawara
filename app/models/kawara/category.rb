@@ -7,5 +7,7 @@ module Kawara
     has_many :articles
 
     validates :name, presence: true
+
+    delegate :latest, to: :articles, prefix: true
   end
 end
