@@ -1,6 +1,7 @@
 class CreateKawaraCategories < ActiveRecord::Migration
   def change
     create_table :kawara_categories do |t|
+      t.string  :slug
       t.string  :name,           null: false
       t.integer :parent_id
       t.integer :lft,            null: false
@@ -11,6 +12,7 @@ class CreateKawaraCategories < ActiveRecord::Migration
       t.timestamps null: false
     end
 
+    add_index :kawara_categories, :slug, unique: true
     add_index :kawara_categories, :parent_id
     add_index :kawara_categories, :lft
     add_index :kawara_categories, :rgt
