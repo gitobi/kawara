@@ -1,6 +1,7 @@
 require 'kawara/engine'
 require 'kawara/config'
 
+require 'friendly_id'
 require 'refile/rails'
 require 'refile/mini_magick'
 require "refile/s3"

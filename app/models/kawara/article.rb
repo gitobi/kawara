@@ -3,6 +3,9 @@ require 'kramdown'
 module Kawara
   class Article < ActiveRecord::Base
 
+    extend FriendlyId
+    friendly_id :title, use: :slugged
+
     belongs_to :category
     has_many :images,             class_name: 'ArticleImage', dependent: :destroy
     has_many :articles_tags,      dependent: :destroy
@@ -17,7 +20,7 @@ module Kawara
     scope :latest, -> (limit=10) { published.last(limit).reverse }
 
     def self.find_from_published(id)
-      published.find(id)
+      friendly.published.find(id)
     end
 
     def html_content(auto_ids: true)
