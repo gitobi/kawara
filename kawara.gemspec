@@ -25,6 +25,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'awesome_nested_set', '~> 3.0', '>= 3.0.3'
   s.add_dependency 'friendly_id', '~> 5.1', '>= 5.1.0'
 
+  s.add_development_dependency 'seed-fu', '~> 2.3', '>= 2.3.5'
+  s.add_development_dependency 'ffaker', '~> 2.2', '>= 2.2.0'
   s.add_development_dependency 'rspec-rails', '~> 3.4', '>= 3.4.2'
   s.add_development_dependency 'factory_girl_rails', '~> 4.6', '>= 4.6.0'
   s.add_development_dependency 'ammeter', '~> 1.1', '>= 1.1.3'
