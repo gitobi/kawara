@@ -5,6 +5,18 @@ module Kawara
 
     routes { Kawara::Engine.routes }
 
+    describe 'GET #index' do
+      subject { get :index }
+
+      before { subject }
+
+      context 'when there is no tag' do
+        it { expect(response).to render_template(:index) }
+        it { expect(response).to have_http_status(:success) }
+        it { expect(assigns(:categories)).to match_array(Kawara::Category.none) }
+      end
+    end
+
     describe 'GET #show' do
       subject { get :show, id: id }
 
