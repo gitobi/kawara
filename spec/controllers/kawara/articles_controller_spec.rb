@@ -5,6 +5,29 @@ module Kawara
 
     routes { Kawara::Engine.routes }
 
+    describe 'GET #index' do
+      subject { get :index }
+
+      let(:draft_article) { create :draft_article }
+      let(:published_article) { create :published_article }
+
+      context 'when there is no published article' do
+        before { draft_article; subject }
+
+        it { expect(response).to render_template(:index) }
+        it { expect(response).to have_http_status(:success) }
+        it { expect(assigns(:articles)).to match_array(Kawara::Article.none) }
+      end
+
+      context 'when there is a published article' do
+        before { published_article; subject }
+
+        it { expect(response).to render_template(:index) }
+        it { expect(response).to have_http_status(:success) }
+        it { expect(assigns(:articles)).to match_array(published_article) }
+      end
+    end
+
     describe 'GET #show' do
       subject { get :show, id: id }
 
