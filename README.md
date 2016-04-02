@@ -11,3 +11,24 @@ This project rocks and uses MIT-LICENSE.
 
 ## Categories are managed by Awesome Nested Set gem
 
+# Getting Started
+
+Add kawara gem to your Gemfile.
+
+`gem kawara`
+
+Install kawara gem.
+
+`bundle install`
+
+Copy migration files.
+
+`bin/rake kawara:install:migrations`
+
+Run migrations.
+
+`bin/rake db:migrate`
+
+Add route to kawara engine in your routes.rb.
+
+`mount Kawara::Engine => '/blog'`
