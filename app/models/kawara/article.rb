@@ -17,7 +17,10 @@ module Kawara
 
     accepts_attachments_for :images
 
+    delegate :name, to: :category, prefix: true
+
     scope :latest, -> (limit=10) { published.last(limit).reverse }
+
 
     def self.find_from_published(id)
       friendly.published.find(id)

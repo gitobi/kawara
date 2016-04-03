@@ -1,6 +1,13 @@
 <% articles.each do |article| %>
   <div>
-    <h1><%= article.title %></h1>
+    <h1><%= link_to article.title, article %></h1>
     <p><%= article.subtitle %></p>
+    <p>Category: <%= link_to article.category_name, article.category %></p>
+    <p>
+      Tags: 
+      <% article.tags.each do |tag| %>
+        <span><%= link_to tag.name, tag %></span>
+      <% end %>
+    </p>
   </div>
 <% end %>
