@@ -2,6 +2,9 @@ require 'rails_helper'
 
 module Kawara
   RSpec.describe Article, type: :model do
+    let(:site)          { create :opened_site_a }
+    let(:draft_article) { create :draft_article, site: site }
+
     describe 'associations' do
       it { should belong_to(:category) }
       it { should have_many(:images) }
@@ -10,10 +13,8 @@ module Kawara
     end
 
     describe '.latest' do
-
-      let(:draft_article)      { create :draft_article }
-      let(:published_article1) { create :published_article }
-      let(:published_article2) { create :published_article }
+      let(:published_article1) { create :published_article, site: site }
+      let(:published_article2) { create :published_article, site: site }
 
       context 'when no limit parameter' do
         subject { Kawara::Article.latest }
@@ -49,8 +50,7 @@ module Kawara
     describe '.find_from_published' do
       subject { Kawara::Article.find_from_published(article.id) }
 
-      let(:draft_article)     { create :draft_article }
-      let(:published_article) { create :published_article }
+      let(:published_article) { create :published_article, site: site }
 
       context 'when there are no published articles' do
         let(:article) { draft_article }

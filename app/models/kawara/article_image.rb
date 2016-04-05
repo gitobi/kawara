@@ -1,6 +1,7 @@
 module Kawara
   class ArticleImage < ActiveRecord::Base
 
+    belongs_to :site
     belongs_to :article
     attachment :file,   type: :image
 

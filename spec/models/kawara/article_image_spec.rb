@@ -11,7 +11,9 @@ module Kawara
     end
 
     describe '#file' do
-      let(:image) { build :kawara_article_image }
+      let(:site)    { create :opened_site_a }
+      let(:article) { create :published_article, site: site }
+      let(:image)   { build  :kawara_article_image, site: site, article: article }
 
       it 'uploads a file' do
         image.file = Refile::FileDouble.new("dummy", "logo.png", content_type: "image/png")
