@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160324062743) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "kawara_article_images", force: :cascade do |t|
+    t.integer  "site_id",           null: false
     t.integer  "article_id",        null: false
     t.string   "file_id",           null: false
     t.string   "file_filename"
@@ -36,9 +37,11 @@ ActiveRecord::Schema.define(version: 20160324062743) do
     t.datetime "updated_at",        null: false
   end
 
-  add_index "kawara_article_images", ["article_id"], name: "index_kawara_article_images_on_article_id"
+  add_index "kawara_article_images", ["file_id"], name: "index_kawara_article_images_on_file_id"
+  add_index "kawara_article_images", ["site_id", "article_id"], name: "index_kawara_article_images_on_site_id_and_article_id"
 
   create_table "kawara_articles", force: :cascade do |t|
+    t.integer  "site_id",                 null: false
     t.integer  "category_id"
     t.string   "slug"
     t.string   "title"
@@ -49,11 +52,10 @@ ActiveRecord::Schema.define(version: 20160324062743) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "kawara_articles", ["category_id", "status"], name: "index_kawara_articles_on_category_id_and_status"
-  add_index "kawara_articles", ["category_id"], name: "index_kawara_articles_on_category_id"
-  add_index "kawara_articles", ["slug"], name: "index_kawara_articles_on_slug", unique: true
-  add_index "kawara_articles", ["status", "id"], name: "index_kawara_articles_on_status_and_id"
-  add_index "kawara_articles", ["status", "slug"], name: "index_kawara_articles_on_status_and_slug"
+  add_index "kawara_articles", ["site_id", "category_id", "status"], name: "index_kawara_articles_on_site_id_and_category_id_and_status"
+  add_index "kawara_articles", ["site_id", "slug"], name: "index_kawara_articles_on_site_id_and_slug", unique: true
+  add_index "kawara_articles", ["site_id", "status", "id"], name: "index_kawara_articles_on_site_id_and_status_and_id"
+  add_index "kawara_articles", ["site_id", "status", "slug"], name: "index_kawara_articles_on_site_id_and_status_and_slug"
 
   create_table "kawara_articles_meta_tags", force: :cascade do |t|
     t.integer  "article_id",  null: false
@@ -76,6 +78,7 @@ ActiveRecord::Schema.define(version: 20160324062743) do
   add_index "kawara_articles_tags", ["tag_id", "article_id"], name: "index_kawara_articles_tags_on_tag_id_and_article_id"
 
   create_table "kawara_categories", force: :cascade do |t|
+    t.integer  "site_id",                    null: false
     t.string   "slug"
     t.string   "name",                       null: false
     t.integer  "parent_id"
@@ -87,21 +90,35 @@ ActiveRecord::Schema.define(version: 20160324062743) do
     t.datetime "updated_at",                 null: false
   end
 
-  add_index "kawara_categories", ["lft"], name: "index_kawara_categories_on_lft"
-  add_index "kawara_categories", ["parent_id"], name: "index_kawara_categories_on_parent_id"
-  add_index "kawara_categories", ["rgt"], name: "index_kawara_categories_on_rgt"
-  add_index "kawara_categories", ["slug"], name: "index_kawara_categories_on_slug", unique: true
+  add_index "kawara_categories", ["site_id", "lft"], name: "index_kawara_categories_on_site_id_and_lft"
+  add_index "kawara_categories", ["site_id", "parent_id"], name: "index_kawara_categories_on_site_id_and_parent_id"
+  add_index "kawara_categories", ["site_id", "rgt"], name: "index_kawara_categories_on_site_id_and_rgt"
+  add_index "kawara_categories", ["site_id", "slug"], name: "index_kawara_categories_on_site_id_and_slug", unique: true
 
   create_table "kawara_meta_tags", force: :cascade do |t|
+    t.integer  "site_id",        null: false
     t.string   "name",           null: false
     t.integer  "articles_count"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
 
-  add_index "kawara_meta_tags", ["name"], name: "index_kawara_meta_tags_on_name", unique: true
+  add_index "kawara_meta_tags", ["site_id", "name"], name: "index_kawara_meta_tags_on_site_id_and_name", unique: true
+
+  create_table "kawara_sites", force: :cascade do |t|
+    t.string   "name",                    null: false
+    t.string   "title"
+    t.string   "description"
+    t.integer  "status",      default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "kawara_sites", ["name"], name: "index_kawara_sites_on_name", unique: true
+  add_index "kawara_sites", ["status"], name: "index_kawara_sites_on_status"
 
   create_table "kawara_tags", force: :cascade do |t|
+    t.integer  "site_id",        null: false
     t.string   "slug"
     t.string   "name",           null: false
     t.integer  "articles_count"
@@ -109,7 +126,7 @@ ActiveRecord::Schema.define(version: 20160324062743) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "kawara_tags", ["name"], name: "index_kawara_tags_on_name", unique: true
-  add_index "kawara_tags", ["slug"], name: "index_kawara_tags_on_slug", unique: true
+  add_index "kawara_tags", ["site_id", "name"], name: "index_kawara_tags_on_site_id_and_name", unique: true
+  add_index "kawara_tags", ["site_id", "slug"], name: "index_kawara_tags_on_site_id_and_slug", unique: true
 
 end

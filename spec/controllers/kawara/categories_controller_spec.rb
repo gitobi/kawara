@@ -2,6 +2,7 @@ require 'rails_helper'
 
 module Kawara
   RSpec.describe CategoriesController, type: :controller do
+    let(:site)          { create :opened_site_a }
 
     routes { Kawara::Engine.routes }
 
@@ -20,8 +21,8 @@ module Kawara
     describe 'GET #show' do
       subject { get :show, id: id }
 
-      let(:category) { create :kawara_category }
-      let(:category_with_published_articles) { create :kawara_category_with_published_articles }
+      let(:category) { create :kawara_category, site: site }
+      let(:category_with_published_articles) { create :kawara_category_with_published_articles, site: site }
 
       context 'when there are related articles' do
         let(:id) { category_with_published_articles.id }

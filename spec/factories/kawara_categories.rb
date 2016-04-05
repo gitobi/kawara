@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :kawara_category, class: 'Kawara::Category' do
-    name "MyString"
+    association :site, factory: :kawara_site
+    name        'MyString'
+
     factory :kawara_category_with_published_articles do
 
       transient do
@@ -8,7 +10,7 @@ FactoryGirl.define do
       end
 
       after(:create) do |category, evaluator|
-        create_list(:published_article, evaluator.articles_count, category: category)
+        create_list(:published_article, evaluator.articles_count, site: category.site, category: category)
       end
     end
   end

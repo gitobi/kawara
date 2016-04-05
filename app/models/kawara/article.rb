@@ -4,8 +4,9 @@ module Kawara
   class Article < ActiveRecord::Base
 
     extend FriendlyId
-    friendly_id :title, use: :slugged
+    friendly_id :title, use: :scoped, scope: :site
 
+    belongs_to :site
     belongs_to :category
     has_many :images,             class_name: 'ArticleImage', dependent: :destroy
     has_many :articles_tags,      dependent: :destroy

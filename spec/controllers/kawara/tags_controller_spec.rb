@@ -2,6 +2,7 @@ require 'rails_helper'
 
 module Kawara
   RSpec.describe TagsController, type: :controller do
+    let(:site) { create :opened_site_a }
 
     routes { Kawara::Engine.routes }
 
@@ -21,8 +22,8 @@ module Kawara
     describe 'GET #show' do
       subject { get :show, id: id }
 
-      let(:tag) { create :kawara_tag }
-      let(:tag_with_published_articles) { create :kawara_tag_with_published_articles }
+      let(:tag) { create :kawara_tag, site: site }
+      let(:tag_with_published_articles) { create :kawara_tag_with_published_articles, site: site }
 
       context 'when there are related articles' do
         let(:id) { tag_with_published_articles.id }
