@@ -1,5 +1,9 @@
+require 'subdomain_validation'
+
 module Kawara
   class Site < ActiveRecord::Base
+    include ::SubdomainValidation
+
     has_many :categories,     dependent: :destroy
     has_many :articles,       dependent: :destroy
     has_many :tags,           dependent: :destroy
@@ -8,6 +12,6 @@ module Kawara
 
     enum status: { closed: 0, opened: 10 }
 
-    validates :name, presence: true, uniqueness: true
+    validates :name, subdomain: true, uniqueness: true
   end
 end
