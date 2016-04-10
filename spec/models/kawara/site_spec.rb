@@ -17,6 +17,11 @@ module Kawara
         subject { build :kawara_site }
         it { should validate_uniqueness_of(:name) }
       end
+
+      describe 'subdomain' do
+        subject { build :kawara_site, name: 'www' }
+        it { is_expected.to_not be_valid }
+      end
     end
   end
 end
