@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324062743) do
+ActiveRecord::Schema.define(version: 20160412060240) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -105,6 +105,12 @@ ActiveRecord::Schema.define(version: 20160324062743) do
 
   add_index "kawara_meta_tags", ["site_id", "name"], name: "index_kawara_meta_tags_on_site_id_and_name", unique: true
 
+  create_table "kawara_roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "kawara_sites", force: :cascade do |t|
     t.string   "name",                    null: false
     t.string   "title"
@@ -128,5 +134,34 @@ ActiveRecord::Schema.define(version: 20160324062743) do
 
   add_index "kawara_tags", ["site_id", "name"], name: "index_kawara_tags_on_site_id_and_name", unique: true
   add_index "kawara_tags", ["site_id", "slug"], name: "index_kawara_tags_on_site_id_and_slug", unique: true
+
+  create_table "kawara_users", force: :cascade do |t|
+    t.integer  "role_id",                             null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",        default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "kawara_users", ["confirmation_token"], name: "index_kawara_users_on_confirmation_token", unique: true
+  add_index "kawara_users", ["email"], name: "index_kawara_users_on_email", unique: true
+  add_index "kawara_users", ["reset_password_token"], name: "index_kawara_users_on_reset_password_token", unique: true
+  add_index "kawara_users", ["role_id"], name: "index_kawara_users_on_role_id"
+  add_index "kawara_users", ["unlock_token"], name: "index_kawara_users_on_unlock_token", unique: true
 
 end
