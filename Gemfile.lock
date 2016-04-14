@@ -1,8 +1,9 @@
 PATH
   remote: .
   specs:
-    kawara (0.3.1)
+    kawara (0.3.2)
       awesome_nested_set (~> 3.0, >= 3.0.3)
+      devise (~> 3.5, >= 3.5.6)
       friendly_id (~> 5.1, >= 5.1.0)
       kramdown (~> 1.10, >= 1.10.0)
       rails (~> 4.2, >= 4.2.6)
@@ -62,10 +63,18 @@ GEM
       jmespath (~> 1.0)
     aws-sdk-resources (2.2.34)
       aws-sdk-core (= 2.2.34)
+    bcrypt (3.1.11)
     builder (3.2.2)
     byebug (8.2.2)
     coderay (1.1.1)
     concurrent-ruby (1.0.1)
+    devise (3.5.6)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
@@ -100,6 +109,7 @@ GEM
     netrc (0.11.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    orm_adapter (0.5.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -147,6 +157,8 @@ GEM
     refile-s3 (0.2.0)
       aws-sdk (~> 2.0)
       refile (~> 0.6.0)
+    responders (2.1.2)
+      railties (>= 4.2.0, < 5.1)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -202,6 +214,8 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
+    warden (1.2.6)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
